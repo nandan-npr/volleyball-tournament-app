@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Public spectators can read tournament data.
+    // Writes are restricted to authenticated Cloud Functions.
+    match /tournaments/{tournamentId} {
+      allow read: if true;
+      allow write: if false;
+
+      match /teams/{teamId} {
+        allow read: if true;
+        allow write: if false;
+      }
+
+      match /matches/{matchId} {
+        allow read: if true;
+        allow write: if false;
+      }
+    }
+  }
+}
