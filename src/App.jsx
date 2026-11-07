@@ -42,6 +42,8 @@ function App() {
     return rows.sort((a,b)=>b.points-a.points || (b.setsFor-b.setsAgainst)-(a.setsFor-a.setsAgainst));
   }, [teams,matches]);
 
+  const isAdmin = Boolean(adminToken);
+
   async function run(action, data) {
     setBusy(true); setMessage("");
     try { const result = await call(action, { tournamentId, adminToken, ...data }); setMessage("Saved successfully."); return result; }
