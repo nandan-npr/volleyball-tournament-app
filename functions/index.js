@@ -15,7 +15,8 @@ async function adminTournament(tournamentId, token) {
   const ref = db.collection("tournaments").doc(id);
   const snap = await ref.get();
   if (!snap.exists) throw new HttpsError("not-found", "Tournament not found.");
-  if (snap.get("adminTokenHash") !== hash(token)) {
+  const privateSnap = await ref.collection("private").doc("organizer").get();
+  if (!privateSnap.exists || privateSnap.get("adminTokenHash") !== hash(token)) {
     throw new HttpsError("permission-denied", "Invalid organizer key.");
   }
   return { id, ref, data: snap.data() };
@@ -45,11 +46,16 @@ export const createTournament = onCall(async (request) => {
 
   const adminToken = randomBytes(24).toString("base64url");
   await ref.set({
-    id, name, organizerName, phone, location, date,
+    id, name, organizerName, location, date,
     format: "League + Knockout",
     teamsLimit: 4,
     matchFormat: "Best of 3",
     status: "registration",
+    createdAt: FieldValue.serverTimestamp()
+  });
+  // Keep the phone number and organizer credential hash outside public tournament data.
+  await ref.collection("private").doc("organizer").set({
+    phone,
     adminTokenHash: hash(adminToken),
     createdAt: FieldValue.serverTimestamp()
   });
