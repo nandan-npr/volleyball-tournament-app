@@ -30,7 +30,7 @@ export const createTournament = onCall(async (request) => {
   if (!name || !organizerName || !phone || !location) {
     throw new HttpsError("invalid-argument", "Tournament name, organizer name, mobile number and location are required.");
   }
-  if (!/^[+0-9()\\-\\s]{7,20}$/.test(phone)) {
+  if (!/^[+0-9()\-\s]{7,20}$/.test(phone)) {
     throw new HttpsError("invalid-argument", "Enter a valid mobile number.");
   }
 
