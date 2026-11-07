@@ -16,6 +16,11 @@ service cloud.firestore {
         allow read: if true;
         allow write: if false;
       }
+
+      // Organizer phone number and credential hash are server-only.
+      match /private/{privateDocument} {
+        allow read, write: if false;
+      }
     }
   }
 }
