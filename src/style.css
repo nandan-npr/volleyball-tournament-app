@@ -12,3 +12,65 @@
 .tabs{display:flex;gap:8px;margin:5px 0 17px}.tabs button{background:transparent;color:#93a2b7;padding:9px 13px;border-radius:8px;font-weight:700;font-size:13px}.tabs button.active,.tabs button:hover{background:#233348;color:#c9f36a}.section-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.section-heading h2{font:600 19px 'Space Grotesk';margin:0}.section-heading p{margin:5px 0 0}.section-heading>svg{color:#c9f36a}.content-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:17px}.team-list{display:grid;gap:12px}.team-row{display:flex;align-items:center;gap:12px}.team-number{width:32px;height:32px;border-radius:9px;background:#293a29;color:#c9f36a;display:grid;place-items:center;font-weight:800;font-size:12px}.team-row div{display:flex;flex-direction:column;gap:3px}.team-row strong{font-size:13px}.team-row small{font-size:11px;color:#93a2b7}
 .table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px;text-align:left}th{color:#8393a8;font-size:10px;text-transform:uppercase;letter-spacing:.8px;font-weight:700}td,th{padding:11px 7px;border-bottom:1px solid #2b3a4d}td{color:#dce4ed}.team-cell{font-weight:700}.match-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.match-card{background:#101c2b;border:1px solid #2c3e52;border-radius:12px;padding:15px}.match-card.is-live{border-color:#718e37;box-shadow:inset 0 0 0 1px #718e3722}.match-top{display:flex;justify-content:space-between;gap:8px;color:#8495aa;font-size:10px;text-transform:uppercase;letter-spacing:.7px}.status{font-size:9px;font-weight:800}.status.live{color:#c9f36a}.status.completed{color:#8cb9ff}.match-teams{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0}.match-teams>div{display:flex;flex-direction:column;gap:7px;min-width:0}.match-teams strong{font-size:13px;overflow-wrap:anywhere}.match-teams small{font:700 17px 'Space Grotesk';color:#c9f36a;letter-spacing:2px}.match-teams .right{text-align:right}.versus{font-size:9px;color:#708198;font-weight:800}.match-winner{display:flex;gap:7px;align-items:center;color:#c9f36a;font-size:11px;margin-bottom:10px}.score-button{width:100%;padding:9px;border-radius:8px;background:#263a2c;color:#d5fa91;font-size:11px;font-weight:700}.footnote{display:flex;gap:7px;align-items:center;color:#8193a7;font-size:11px;margin:20px 0}.global-notice{margin-bottom:15px}.warning{background:#382d20}
 @media(max-width:720px){.shell{width:calc(100% - 28px);padding-top:18px}.hero{padding:75px 0 55px}.hero h1{letter-spacing:-2px}.feature-grid{grid-template-columns:1fr}.feature{padding:17px}.tournament-head{flex-direction:column}.id-card{width:100%;flex-direction:row;align-items:center;justify-content:space-between}.id-card strong{font-size:17px}.content-grid{grid-template-columns:1fr}.match-list{grid-template-columns:1fr}.panel{padding:17px}.meta{gap:10px}.hero-actions>*{width:100%}}
+
+/* --- Cricbuzz-Inspired Volleyball Scoreboard & Organizer Dashboard Styles --- */
+.pulse-live{display:inline-flex;align-items:center;gap:6px;background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.3);padding:3px 8px;border-radius:20px;font:700 10px 'Space Grotesk';letter-spacing:1px}
+.pulse-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#ef4444;box-shadow:0 0 8px #ef4444;animation:pulseDot 1.4s infinite}
+@keyframes pulseDot{0%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}100%{opacity:1;transform:scale(1)}}
+
+.scoreboard-live-hero{background:linear-gradient(135deg,#132438 0%,#0e1a2b 100%);border:2px solid #718e37;box-shadow:0 8px 24px rgba(0,0,0,0.4),0 0 0 1px rgba(201,243,106,0.2);border-radius:16px;padding:20px;margin-bottom:18px}
+.scoreboard-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:11px;color:#93a2b7;text-transform:uppercase;letter-spacing:1px}
+.scoreboard-grid{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+.team-col{display:flex;flex-direction:column;gap:6px}
+.team-col.right{text-align:right;align-items:flex-end}
+.team-col strong{font:700 20px 'Space Grotesk';color:#f8fafc;letter-spacing:-0.5px}
+.sets-won-badge{display:inline-flex;align-items:center;gap:5px;background:#203348;color:#c9f36a;font-size:12px;font-weight:800;padding:4px 9px;border-radius:6px;border:1px solid #344860}
+.center-score-box{display:flex;flex-direction:column;align-items:center;gap:4px;background:#09121d;padding:12px 20px;border-radius:12px;border:1px solid #23344a;min-width:140px}
+.live-current-score{font:800 36px/1 'Space Grotesk';color:#c9f36a;letter-spacing:3px}
+.live-active-set{font-size:11px;font-weight:700;color:#94a3b8;letter-spacing:1px}
+.set-breakdown-row{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.set-chip{background:#0e1724;border:1px solid #283a4f;padding:4px 10px;border-radius:6px;font-size:11px;color:#94a3b8;font-weight:600}
+.set-chip.active{border-color:#c9f36a;color:#c9f36a;background:rgba(201,243,106,0.1)}
+
+.match-card-completed{background:#0d1828;border:1px solid #24354b;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.match-card-completed.has-winner{border-left:4px solid #c9f36a}
+.match-card-upcoming{background:#0d1828;border:1px dashed #2b3d55;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px}
+
+.team-card-interactive{background:#101d2d;border:1px solid #2b3e55;border-radius:14px;padding:18px;cursor:pointer;transition:all .2s ease;display:flex;flex-direction:column;gap:8px}
+.team-card-interactive:hover{border-color:#c9f36a;transform:translateY(-2px);background:#132338}
+.team-card-interactive .team-head{display:flex;align-items:center;gap:12px}
+.starter-tag{background:rgba(201,243,106,0.15);color:#c9f36a;border:1px solid rgba(201,243,106,0.3);padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700}
+.sub-tag{background:#1e2d3f;color:#94a3b8;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700}
+
+.modal-backdrop{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(5,10,18,0.85);backdrop-filter:blur(4px);display:grid;place-items:center;z-index:999;padding:20px}
+.modal-window{background:#111e30;border:1px solid #334760;border-radius:16px;width:min(580px,100%);max-height:85vh;overflow-y:auto;padding:24px;box-shadow:0 20px 40px rgba(0,0,0,0.6)}
+.modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid #24364d;padding-bottom:14px}
+.close-modal-btn{background:none;color:#94a3b8;font-size:20px;width:32px;height:32px;border-radius:8px;display:grid;place-items:center}
+.close-modal-btn:hover{background:#1c2d42;color:#fff}
+
+.organizer-nav{display:flex;gap:8px;margin-bottom:22px;border-bottom:1px solid #25374e;padding-bottom:12px;overflow-x:auto}
+.org-tab-btn{background:transparent;color:#94a3b8;padding:10px 16px;border-radius:10px;font-weight:700;font-size:13px;display:flex;align-items:center;gap:7px;white-space:nowrap;transition:.2s}
+.org-tab-btn:hover{color:#fff;background:#1a2b3e}
+.org-tab-btn.active{background:#c9f36a;color:#12200e}
+
+.filter-bar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.filter-btn{background:#132234;color:#94a3b8;border:1px solid #283a4f;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;transition:.2s}
+.filter-btn.active,.filter-btn:hover{background:#23374e;color:#c9f36a;border-color:#c9f36a}
+
+.danger-btn{background:#3b1818;color:#fca5a5;border:1px solid #6b2626;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.danger-btn:hover{background:#522020;color:#fff}
+.small-btn{padding:5px 9px;font-size:11px;border-radius:6px}
+
+.field-select{width:100%;border:1px solid #34455c;background:#0d1828;border-radius:10px;padding:12px 13px;color:#f3f6fa;outline:none;font:inherit}
+.field-select:focus{border-color:#c9f36a}
+
+/* Discreet Organizer Access & Administrative Status Bar */
+.discreet-org-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;font-size:12px;font-weight:600;color:#94a3b8;background:rgba(27,41,59,0.7);border:1px solid #2d3f54;border-radius:8px;transition:all 0.2s ease;cursor:pointer}
+.discreet-org-btn:hover{color:#c9f36a;border-color:#c9f36a;background:#1b293b}
+
+.org-status-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;background:linear-gradient(90deg,#142334 0%,#0f1c2b 100%);border:1px solid #304760;padding:10px 16px;border-radius:12px;margin-bottom:18px;flex-wrap:wrap}
+.org-mode-tag{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:#c9f36a;letter-spacing:0.5px}
+
+.lock-logout-btn{display:inline-flex;align-items:center;gap:6px;background:#2a1818;color:#fca5a5;border:1px solid #542424;padding:7px 13px;border-radius:8px;font-size:12px;font-weight:700;transition:.2s;cursor:pointer}
+.lock-logout-btn:hover{background:#3e1c1c;color:#fff;border-color:#7f2d2d}
+

@@ -1,0 +1,8 @@
+{
+  "name": "VolleyLive — Tournament Manager",
+  "description": "Volleyball tournament fixtures and live scores",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
