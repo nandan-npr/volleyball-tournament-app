@@ -10,10 +10,11 @@ const saveStoredAdmin = (id, token) => localStorage.setItem(`volley_admin_${id}`
 
 function App() {
   const params = new URLSearchParams(location.search);
-  const [view, setView] = useState(params.get("id") ? "join" : "home");
+  const [view, setView] = useState(params.get("id") ? "dashboard" : "home");
   const [tournamentId, setTournamentId] = useState((params.get("id") || "").toUpperCase());
   const [adminToken, setAdminToken] = useState("");
   const [tournament, setTournament] = useState(null);
+  const [loadingTournament, setLoadingTournament] = useState(Boolean(params.get("id")));
   const [teams, setTeams] = useState([]);
   const [matches, setMatches] = useState([]);
   const [busy, setBusy] = useState(false);
@@ -21,7 +22,18 @@ function App() {
 
   useEffect(() => {
     if (!tournamentId) return;
-    const unsub = onSnapshot(doc(db, "tournaments", tournamentId), snap => setTournament(snap.exists() ? snap.data() : null));
+    setLoadingTournament(true);
+    const unsub = onSnapshot(
+      doc(db, "tournaments", tournamentId),
+      snap => {
+        setTournament(snap.exists() ? snap.data() : null);
+        setLoadingTournament(false);
+      },
+      () => {
+        setTournament(null);
+        setLoadingTournament(false);
+      }
+    );
     const unsubTeams = onSnapshot(collection(db, "tournaments", tournamentId, "teams"), snap => setTeams(snap.docs.map(d => d.data())));
     const unsubMatches = onSnapshot(collection(db, "tournaments", tournamentId, "matches"), snap => setMatches(snap.docs.map(d => d.data()).sort((a,b) => (a.matchNumber || 0)-(b.matchNumber || 0))));
     setAdminToken(getStoredAdmin(tournamentId));
@@ -145,7 +157,7 @@ function App() {
 
   return <main className="shell wide">
     <TopBar onBack={()=>{setView("home");setTournamentId("");history.replaceState({}, "", location.pathname);}} title="Tournament dashboard" />
-    {!tournament ? <div className="panel empty"><Trophy size={32}/><h2>Tournament not found</h2><p>Check the ID and try again.</p><button className="secondary" onClick={()=>setView("join")}>Enter another ID</button></div> :
+    {!tournament ? <div className="panel empty"><Trophy size={32}/><h2>{loadingTournament ? "Loading tournament…" : "Tournament not found"}</h2><p>{loadingTournament ? "Connecting to live tournament data." : "Check the ID and try again."}</p>{!loadingTournament && <button className="secondary" onClick={()=>setView("join")}>Enter another ID</button>}</div> :
     <>
       <section className="tournament-head">
         <div><div className="eyebrow"><span className="live-dot"/> {tournament.status?.toUpperCase() || "REGISTRATION"}</div><h1>{tournament.name}</h1>
